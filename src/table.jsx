@@ -44,6 +44,7 @@ export default function Table() {
 
     setFilteredData(sortedData);
   };
+  
 
   return (
     <div className="p-4">
@@ -69,7 +70,17 @@ export default function Table() {
               className="cursor-pointer border border-gray-500 px-6 py-3"
               onClick={() => handleSort('email')}
             >
-              Email {sortData.key === 'email' && (sortData.direction === 'ascending' ? '↑' : '↓')}
+              Email 
+              {sortData.key === 'email' && (sortData.direction === 'ascending' ? '↑' : '↓')}
+            </th>
+            <th  className="cursor-pointer border border-gray-500 px-6 py-3">
+              Password
+            </th>
+            <th  className="cursor-pointer border border-gray-500 px-6 py-3">
+              mobile
+            </th>
+            <th  className="cursor-pointer border border-gray-500 px-6 py-3">
+              gender
             </th>
           </tr>
         </thead>
@@ -79,6 +90,9 @@ export default function Table() {
               <tr key={index}>
                 <td className="border border-gray-500 px-6 py-3">{data.username}</td>
                 <td className="border border-gray-500 px-6 py-3">{data.email}</td>
+                <td className="border border-gray-500 px-6 py-3">{data.password}</td>
+                <td className="border border-gray-500 px-6 py-3">{data.mobile}</td>
+                <td className="border border-gray-500 px-6 py-3">{data.gender}</td>
               </tr>
             ))
           ) : (
