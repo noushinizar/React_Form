@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import EditPage from './editpage';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 export default function Table() {
   const [savedData, setSavedData] = useState([]);
@@ -9,9 +10,9 @@ export default function Table() {
   const [sortData, setSortData] = useState({ key: 'username', direction: 'ascending' });
   const [editingIndex, setEditingIndex] = useState(null); // Track the index being edited
   const [isEditing, setIsEditing] = useState(false);
-  const [isViewing, setIsViewing] = useState(false); // Track if in view mode
-  const [viewData, setViewData] = useState(null); // Data to be viewed
-
+  // const [isViewing, setIsViewing] = useState(false); // Track if in view mode
+  // const [viewData, setViewData] = useState(null); // Data to be viewed
+  const navigate = useNavigate(); // For navigation
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('formData')) || [];
     setSavedData(data);
@@ -23,8 +24,8 @@ export default function Table() {
     setSearchTerm(e.target.value);
     const filtered = savedData.filter(
       (item) =>
-        item.username.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        item.email.toLowerCase().includes(e.target.value.toLowerCase())
+        item.username.toLowerCase().includes(e.target.value.toLowerCase()) 
+      // ||item.email.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setFilteredData(filtered);
   };
@@ -69,10 +70,9 @@ export default function Table() {
     localStorage.setItem('formData', JSON.stringify(updatedData));
     setIsEditing(false); // Return to the table view
   };
-
   const handleView = (index) => {
-    setViewData(savedData[index]); // Set the data to be viewed
-    setIsViewing(true); // Show the view modal or section
+    const viewData = savedData[index];
+    navigate('/view', { state: { viewData } }); // Navigate to the ViewPage with viewData
   };
   return (
     <div className="p-4 ">
@@ -82,22 +82,7 @@ export default function Table() {
           onUpdate={handleUpdate}
           onCancel={() => setIsEditing(false)}
         />
-      ) : isViewing ? (
-        <div className="view-section">
-          <h3 className="text-xl font-bold">View Details</h3>
-          <p><strong>Username:</strong> {viewData.username}</p>
-          <p><strong>Email:</strong> {viewData.email}</p>
-          <p><strong>Password:</strong> {viewData.password}</p>
-          <p><strong>Mobile:</strong> {viewData.mobile}</p>
-          <p><strong>Gender:</strong> {viewData.gender}</p>
-          <button
-            onClick={() => setIsViewing(false)}
-            className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md"
-          >
-            Close
-          </button>
-        </div>
-      ) : (
+      ):(
         <>
           <h2 className="text-xl font-bold mb-4 text-center">Saved Data</h2>
           <input
@@ -122,7 +107,7 @@ export default function Table() {
                   onClick={() => handleSort('email')}
                 >
                   Email
-                  {sortData.key === 'email' && (sortData.direction === 'ascending' ? '↑' : '↓')}
+                 
                 </th>
                 <th className="cursor-pointer border border-gray-500 px-6 py-3">
                   Password
@@ -132,6 +117,9 @@ export default function Table() {
                 </th>
                 <th className="cursor-pointer border border-gray-500 px-6 py-3">
                   gender
+                </th>
+                <th className="cursor-pointer border border-gray-500 px-6 py-3">
+                  Country
                 </th>
                 <th className="cursor-pointer border border-gray-500 px-6 py-3">
                   actions
@@ -147,6 +135,7 @@ export default function Table() {
                     <td className="border border-gray-500 px-6 py-3">{data.password}</td>
                     <td className="border border-gray-500 px-6 py-3">{data.mobile}</td>
                     <td className="border border-gray-500 px-6 py-3">{data.gender}</td>
+                    <td className="border border-gray-500 px-6 py-3">{data.country}</td>
                     <td className="border border-gray-500 px-6 py-3 ">
                       <button
                         onClick={() => handleView(index)}

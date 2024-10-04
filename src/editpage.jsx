@@ -22,7 +22,7 @@ export default function EditPage({ initialData, onUpdate, onCancel }) {
           name="username"
           value={formData.username}
           onChange={handleChange}
-          className="border p-2 w-full rounded-md"
+          className="border p-2  w-[225px]  rounded-md"
         />
       </div>
       <div>
@@ -32,17 +32,17 @@ export default function EditPage({ initialData, onUpdate, onCancel }) {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="border p-2 w-full rounded-md"
+          className="border p-2  w-[225px]  rounded-md"
         />
       </div>
       <div>
         <label className="block mb-1">Password</label>
         <input
-          type="password"
+          type="text"
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className="border p-2 w-full rounded-md"
+          className="border p-2  w-[225px]  rounded-md"
         />
       </div>
       <div>
@@ -52,18 +52,63 @@ export default function EditPage({ initialData, onUpdate, onCancel }) {
           name="mobile"
           value={formData.mobile}
           onChange={handleChange}
-          className="border p-2 w-full rounded-md"
+          className="border p-2  w-[225px]  rounded-md"
         />
       </div>
       <div>
         <label className="block mb-1">Gender</label>
-        <input
-          type="text"
-          name="gender"
-          value={formData.gender}
+        <div className="flex space-x-4">
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="gender"
+              value="Male"
+              checked={formData.gender === "Male"}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            Male
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="gender"
+              value="Female"
+              checked={formData.gender === "Female"}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            Female
+          </label>
+          <label className="flex items-center">
+            <input
+              type="radio"
+              name="gender"
+              value="Other"
+              checked={formData.gender === "Other"}
+              onChange={handleChange}
+              className="mr-2"
+            />
+            Other
+          </label>
+        </div>
+      </div>
+      <div>
+        <label className="block mb-1">Country</label>
+        <select
+          name="country"
+          value={formData.country}
           onChange={handleChange}
-          className="border p-2 w-full rounded-md"
-        />
+          className="border p-2 w-[225px] rounded-md"
+        >
+          <option value="">Select Country</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="India">India</option>
+          <option value="Canada">Canada</option>
+          <option value="Australia">Australia</option>
+         
+        </select>
       </div>
       <div className="flex space-x-4">
         <button

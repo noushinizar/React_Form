@@ -71,6 +71,7 @@ function Form() {
         })
       }
       />
+       {errors.mobile && <p className="text-red-500">Please enter a valid mobile number.</p>}
       <div className="mt-1 w-full">
       <div className="flex gap-5">
         <label className="block mb-1">Gender :</label>
@@ -102,8 +103,25 @@ function Form() {
         </div>
       </div>
       {errors.gender && <p className="text-red-500">Gender selection is required.</p>}
-
-      {errors.mobile && <p className="text-red-500">Please enter a valid mobile number.</p>}
+  
+      <div className="mt-1 w-full">
+      <div className="flex gap-5 items-center">
+        <label className="block mb-1">Country:</label>
+        <select
+          className="p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          {...register('country', { required: true })}
+        >
+          <option value="">Select Country</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="India">India</option>
+          <option value="Canada">Canada</option>
+          <option value="Australia">Australia</option>
+          
+        </select>
+      </div>
+      </div>
+      {errors.country && <p className="text-red-500">Country selection is required.</p>}
       <input type="submit" className='h-[30px] w-[80px] bg-blue-600 rounded-lg text-white' />
     </form>
   );
