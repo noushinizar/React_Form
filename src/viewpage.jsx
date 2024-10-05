@@ -11,21 +11,38 @@ export default function ViewPage() {
   }
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">View Details</h2>
-      <p><strong>Username:</strong> {viewData.username}</p>
-      <p><strong>Email:</strong> {viewData.email}</p>
-      <p><strong>Password:</strong> {viewData.password}</p>
-      <p><strong>Mobile:</strong> {viewData.mobile}</p>
-      <p><strong>Gender:</strong> {viewData.gender}</p>
-      <p><strong>Country:</strong> {viewData.country}</p>
-      <button
-        onClick={() => navigate(-1)} // Go back to the previous page
-        className="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md"
-      >
-        Back
-      </button>
-    </div>
+    <div className="bg-white p-12 rounded-lg shadow-lg w-[400px]  flex items-center justify-center flex-col gap-[20px] ">
+  <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">View Details</h2>
+  
+  <div className="space-y-4">
+    <p className="text-gray-600 flex gap-[20px]">
+      <strong className="font-semibold text-gray-800">Username:</strong> {viewData.username}
+    </p>
+    <p className="text-gray-600 flex gap-[20px]">
+      <strong className="font-semibold text-gray-800">Email:</strong> {viewData.email}
+    </p>
+    <p className="text-gray-600 flex gap-[20px]">
+      <strong className="font-semibold text-gray-800">Password:</strong> {viewData.password}
+    </p>
+    <p className="text-gray-600 flex gap-[20px]">
+      <strong className="font-semibold text-gray-800">Mobile:</strong> {viewData.mobile}
+    </p>
+    <p className="text-gray-600 flex gap-[20px]">
+      <strong className="font-semibold text-gray-800">Gender:</strong> {viewData.gender}
+    </p>
+    <p className="text-gray-600 ">
+      <strong className="font-semibold text-gray-800">Country:</strong> {viewData.country}
+    </p>
+  </div>
+
+  <button
+    onClick={() => navigate(-1)} // Go back to the previous page
+    className="block w-full bg-blue-500 text-white py-2 px-4 mt-6 rounded-md hover:bg-blue-600 transition duration-200"
+  >
+    Back
+  </button>
+</div>
+
   );
 }
 
