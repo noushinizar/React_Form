@@ -59,7 +59,7 @@ function Form() {
         })
       }
       />
-      {errors.mobile && <p className="text-red-500">Username is required and must be 6-12 characters long.</p>}
+      {errors.password && <p className="text-red-500">incorrect password.</p>}
       <input type="mobile" 
       placeholder='mobile'
       className='mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent'
